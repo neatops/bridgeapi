@@ -161,7 +161,8 @@ module BridgeApi
             "Client-Id" => BridgeApi.configuration.api_client_id,
             "Client-Secret" => BridgeApi.configuration.api_client_secret,
             "Content-Type" => "application/json",
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            "Accept-Language" => BridgeApi.configuration.locale
           }
 
         return headers unless access_token

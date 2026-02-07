@@ -21,7 +21,7 @@ module BridgeApi
   #
   class Configuration
     attr_reader :api_base_url, :api_version
-    attr_accessor :api_client_id, :api_client_secret, :follow_pages, :debug
+    attr_accessor :api_client_id, :api_client_secret, :follow_pages, :debug, :locale
 
     #
     # Initializes Configuration
@@ -33,6 +33,7 @@ module BridgeApi
       @api_client_secret = ""
       @follow_pages = false
       @debug = false
+      @locale = "fr"
     end
   end
 end

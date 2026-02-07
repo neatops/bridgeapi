@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2] - 2026-02-07
+
+### Added
+- `locale` configuration option (default: `"fr"`) for `Accept-Language` header
+- `Accept-Language` header sent on all API requests for localized status descriptions
+
 ## [1.0.1] - 2026-02-07
 
 ### Changed
