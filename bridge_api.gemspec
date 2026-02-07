@@ -3,7 +3,7 @@
 require_relative "lib/bridge_api/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "bridge_api"
+  spec.name          = "bridgeapi_client"
   spec.version       = BridgeApi::VERSION
   spec.authors       = ["Olivier Buffon", "Thomas Andrieu"]
   spec.email         = ["olivier@buffon.dev", "t.andrieu@gmail.com"]

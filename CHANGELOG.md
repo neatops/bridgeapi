@@ -1,14 +1,19 @@
 # Changelog
 
+## [1.0.1] - 2026-02-07
+
+### Changed
+- Renamed gem from `bridge_api` to `bridgeapi_client` (name conflict on RubyGems)
+
+### Added
+- `debug` configuration option to toggle verbose HTTP request/response logging (default: `false`)
+
 ## [1.0.0] - 2026-02-07
 
 ### Changed
 - Renamed gem from `bridge_bankin` to `bridge_api`
 - Renamed module from `BridgeBankin` to `BridgeApi`
 - Full compatibility with Bridge API v3 (2025-01-15)
-
-### Added
-- `debug` configuration option to toggle verbose HTTP request/response logging (default: `false`)
 
 ### Fixed
 - Thread safety: API client now uses `Thread.current` storage
