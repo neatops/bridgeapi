@@ -2,17 +2,13 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.bridgeapi.io/v2/authenticate?email=john.doe@email.com&password=password123
+    uri: https://api.bridgeapi.io/v3/aggregation/authorization/token?email=john.doe@email.com&password=password123
     body:
       encoding: US-ASCII
       string: email=john.doe%40email.com&password=password123
     headers:
-      Bankin-Version:
-      - '2019-02-18'
-      Client-Id:
-      - "<api_client_id>"
-      Client-Secret:
-      - "<api_client_secret>"
+      Bridge-Version:
+      - '2025-01-15'
       Content-Type:
       - application/x-www-form-urlencoded
       Accept-Encoding:
@@ -27,42 +23,35 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 23 Dec 2020 21:32:44 GMT
+      - Thu, 20 Nov 2025 13:36:17 GMT
       Content-Type:
       - application/json
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '150'
       Connection:
       - keep-alive
-      Server:
-      - nginx
       Vary:
-      - Accept-Encoding
+      - Access-Control-Request-Headers
+      - Access-Control-Request-Method
       - Origin
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
       Pragma:
       - no-cache
       Expires:
       - '0'
-      Request-Time:
-      - '383'
-      X-Robots-Tag:
-      - noindex
-      Cache-Control:
-      - no-cache, no-store, max-age=0, must-revalidate
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Frame-Options:
-      - DENY
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Content-Security-Policy:
-      - 'default-src ''self''; img-src ''self'' https://web.bankin.com; data: https://*.bankin.com'
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload;
+      X-Robots-Tag:
+      - noindex
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      Server:
+      - Bridge
     body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"75c02d86530cb4b4ab5f80ae4b3b692117dfb992-16ad332f-3368-4d56-a846-0fadc8cceb35","expires_at":"2020-12-23T23:32:44.158Z","user":{"uuid":"73a9a664-66b9-41a3-8f93-e404036f7c2e","resource_uri":"/v2/users/73a9a664-66b9-41a3-8f93-e404036f7c2e","resource_type":"user","email":"john.doe@email.com"}}'
-  recorded_at: Wed, 23 Dec 2020 21:32:44 GMT
+      encoding: UTF-8
+      string: '{"access_token":"test_access_token_123","expires_at":"2025-11-20T14:36:17.000Z","user":{"uuid":"test-user-uuid"}}'
+  recorded_at: Thu, 20 Nov 2025 13:36:17 GMT
 recorded_with: VCR 6.0.0

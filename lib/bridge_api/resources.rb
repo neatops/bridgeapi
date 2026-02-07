@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+require "bridge_api/authorization"
+require "bridge_api/account"
+require "bridge_api/category"
+require "bridge_api/stock"
+require "bridge_api/provider"
+require "bridge_api/bank"
+require "bridge_api/user"
+require "bridge_api/connect"
+require "bridge_api/item"
+require "bridge_api/transaction"
+require "bridge_api/payment"
+require "bridge_api/transfer"
+require "bridge_api/insight"

@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "bridge_bankin"
+require "bridge_api"
 require "awesome_print"
 
 # You can add fixtures and/or initialization code here to make experimenting

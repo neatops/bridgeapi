@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.shared_context "when resource is public", shared_context: :metadata do
-  let(:api_client) { instance_double("BridgeBankin::API::Client") }
+  let(:api_client) { instance_double("BridgeApi::API::Client") }
 
   shared_examples "a public resource" do
     let(:request_params) { defined?(params) ? params : {} }
@@ -12,11 +12,11 @@ RSpec.shared_context "when resource is public", shared_context: :metadata do
     end
 
     it "inherits from BridgeObject class" do
-      expect(described_class).to be < BridgeBankin::BridgeObject
+      expect(described_class).to be < BridgeApi::BridgeObject
     end
 
     it "does not require an access_token" do
-      allow(api_client).to receive_messages(BridgeBankin::API::Client::HTTP_VERBS_MAP.keys)
+      allow(api_client).to receive_messages(BridgeApi::API::Client::HTTP_VERBS_MAP.keys)
       expect(api_client).not_to receive(:access_token=)
       expect(api_client).to receive(request_method).with(endpoint, **request_params).and_return({})
       subject
@@ -32,7 +32,7 @@ end
 RSpec.shared_context "when resource is private", shared_context: :metadata do
   let(:authorization) do
     VCR.use_cassette("request_access_token") do
-      BridgeBankin::Authorization.generate_token(
+      BridgeApi::Authorization.generate_token(
         **{
           email: "john.doe@email.com",
           password: "password123"
@@ -41,7 +41,7 @@ RSpec.shared_context "when resource is private", shared_context: :metadata do
     end
   end
   let(:access_token) { authorization.access_token }
-  let(:api_client) { instance_double("BridgeBankin::API::Client") }
+  let(:api_client) { instance_double("BridgeApi::API::Client") }
 
   shared_examples "a protected resource" do
     let(:request_params) { defined?(params) ? params : {} }
@@ -52,11 +52,11 @@ RSpec.shared_context "when resource is private", shared_context: :metadata do
     end
 
     it "inherits from BridgeObject class" do
-      expect(described_class).to be < BridgeBankin::BridgeObject
+      expect(described_class).to be < BridgeApi::BridgeObject
     end
 
     it "requires an access_token" do
-      allow(api_client).to receive_messages(BridgeBankin::API::Client::HTTP_VERBS_MAP.keys)
+      allow(api_client).to receive_messages(BridgeApi::API::Client::HTTP_VERBS_MAP.keys)
       expect(api_client).to receive(:access_token=).with(access_token).and_return({})
       expect(api_client).to receive(request_method).with(endpoint, **request_params).and_return({})
       subject

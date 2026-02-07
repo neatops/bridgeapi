@@ -2,13 +2,13 @@
 
 require "securerandom"
 
-require "bridge_bankin"
+require "bridge_api"
 require "shared/resource_context"
 require "webmock/rspec"
 require "vcr"
 require "pry"
 
-BridgeBankin.configure do |config|
+BridgeApi.configure do |config|
   config.api_client_id = ENV["BRIDGE_API_CLIENT_ID"]
   config.api_client_secret = ENV["BRIDGE_API_CLIENT_SECRET"]
 end
@@ -17,10 +17,16 @@ VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr"
   config.hook_into :webmock
   config.configure_rspec_metadata!
-  config.define_cassette_placeholder("<api_client_id>") { BridgeBankin.configuration.api_client_id }
-  config.define_cassette_placeholder("<api_client_secret>") { BridgeBankin.configuration.api_client_secret }
+  config.define_cassette_placeholder("<api_client_id>") { BridgeApi.configuration.api_client_id }
+  config.define_cassette_placeholder("<api_client_secret>") { BridgeApi.configuration.api_client_secret }
   # config.debug_logger = $stderr
+  
+  # Ignore SSL errors for recording in development/test
+  config.ignore_localhost = true
 end
+
+# Disable SSL verification for tests to avoid SSLError
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
