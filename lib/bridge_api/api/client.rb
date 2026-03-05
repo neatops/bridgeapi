@@ -144,11 +144,15 @@ module BridgeApi
         BridgeApi.configuration.debug
       end
 
-      def handle_paging(data)
+      def handle_paging(data, original_params = {})
         page_uri = URI.parse(data[:pagination][:next_uri])
-        params = URI.decode_www_form(page_uri.query).to_h
+        next_page_params = URI.decode_www_form(page_uri.query).to_h.symbolize_keys
+        
+        # Merge original params (like filters) with next page params (pagination cursor)
+        # Next page params take precedence
+        merged_params = original_params.merge(next_page_params)
 
-        next_page_data = get(page_uri.path, **params)
+        next_page_data = get(page_uri.path, **merged_params)
 
         next_page_data[:resources] = data[:resources] + next_page_data[:resources]
         next_page_data
